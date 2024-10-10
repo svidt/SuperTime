@@ -11,6 +11,7 @@ import Foundation
 import QuartzCore
 import SwiftUI
 import UserNotifications
+import WidgetKit
 
 class TimerViewModel: ObservableObject {
     @Published var currentTime: Int = 0  // Current time in milliseconds
@@ -23,6 +24,7 @@ class TimerViewModel: ObservableObject {
     private var displayLink: CADisplayLink?
     private var startTime: Date? = nil
     private var elapsedTime: TimeInterval = 0  // Store elapsed time when paused
+    private var lastUpdateTimestamp: TimeInterval = Date().timeIntervalSince1970
     
     // Audioplayer
     private var player: AVAudioPlayer?
@@ -76,8 +78,17 @@ class TimerViewModel: ObservableObject {
             startLiveActivity()
             print("Timer started, Live Activity initiated")
             
+            // Update widget with RUNNING
+            let currentTimeFormatted = currentTimeAsString()
+            updateTimerData(timerValue: currentTimeFormatted, timerState: "running", timerMode: currentMode())
+            
             if isCountingDown {
                 scheduleNotification()
+                
+                // Update widget with RUNNING
+                let currentTime = currentTimeAsString()  // Assuming you have a method to format current time as string
+                updateTimerData(timerValue: currentTime, timerState: "running", timerMode: currentMode())
+                
             }
         }
     }
@@ -93,11 +104,21 @@ class TimerViewModel: ObservableObject {
             
             UIApplication.shared.isIdleTimerDisabled = false
             print("~Screen Always OFF~")
+            
             provideHapticFeedback(for: .startStop)
+            
             stopLiveActivityTimer()  // Stop live activity updates
             endLiveActivity()  // Ensure live activity reflects the stop state
             print("Timer stopped, Live Activity updated")
-
+            
+            // Update widget with PAUSED
+            // Log to confirm stopping behavior
+            let currentTimeFormatted = currentTimeAsString()
+            print("Current time after stop: \(currentTimeFormatted)")
+            updateTimerData(timerValue: currentTimeFormatted, timerState: "paused", timerMode: currentMode())
+            print("Widget should be - PAUSED - ")
+        } else {
+            print("stopTimer() called, but timer was not running.")
         }
     }
     
@@ -106,7 +127,6 @@ class TimerViewModel: ObservableObject {
         if currentTime != 0 {
             provideHapticFeedback(for: .reset)
         }
-
 
         stopTimer()
         currentTime = isCountingDown ? countdownTime : 0  // Reset to 0 or countdown start
@@ -120,62 +140,54 @@ class TimerViewModel: ObservableObject {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         
         endLiveActivity()
-        print("Timer reset, Live Activity ended")
+        
+        // Update widget with STOPPED
+        let currentTimeFormatted = currentTimeAsString()
+        updateTimerData(timerValue: currentTimeFormatted, timerState: "stopped", timerMode: currentMode())
     }
     
     // MARK: - Time Update
     @objc private func updateTime() {
         guard let startTime = startTime else { return }
         let elapsed = Date().timeIntervalSince(startTime) * 1000  // Elapsed time in ms
-        
+   
         if isCountingDown {
             updateCountdownTimer(elapsed: elapsed)
         } else {
             currentTime = Int(elapsed)  // Count up in stopwatch mode
+            print("Stopwatch running: current time \(currentTimeAsString())")
         }
-//        print("In-App Time (ms): \(currentTime)")
+        
+        // Ensure that we do not keep running if timer is stopped
+        if !isRunning {
+            print("updateTime() called but timer is no longer running.")
+            return
+        }
     }
     
     private func updateCountdownTimer(elapsed: TimeInterval) {
         let remainingTime = countdownTime - Int(elapsed)
         if remainingTime > 0 {
             currentTime = remainingTime
+            print("Countdown running: remaining time \(currentTimeAsString())")
         } else {
-            currentTime = 0
-            stopTimer()
-            endLiveActivity()
+            currentTime = 0  // Ensure we explicitly set currentTime to 0
+            print("Countdown reached zero. Stopping timer.")
+            
+            stopTimer()  // Call stopTimer to handle timer stopping logic
+            endLiveActivity()  // Ensure live activity is stopped
+            stopLiveActivityTimer()  // Stop live activity timer
+            
             UIApplication.shared.isIdleTimerDisabled = false
             print("~Screen Always OFF~")
-            print("Countdown reached zero, triggering alarm.")
             playAlarm()
-        }
-    }
-    
-    
-    // MARK: - Live Activity Timer
-    private func startLiveActivityTimer() {
-        let queue = DispatchQueue(label: "com.supertime.liveactivity")
-        liveActivityTimer = DispatchSource.makeTimerSource(queue: queue)
-        liveActivityTimer?.schedule(deadline: .now(), repeating: 1.0)  // Update every second
+            print("Countdown reached zero, triggering alarm.")
         
-        liveActivityTimer?.setEventHandler { [weak self] in
-            guard let self = self else { return }
-            
-            let secondsElapsed = self.currentTime / 1000  // Convert to seconds
-            if secondsElapsed != self.lastSecondUpdated {
-                self.lastSecondUpdated = secondsElapsed
-                DispatchQueue.main.async {
-                    self.updateLiveActivity()  // Only update Live Activity every second
-                }
-            }
+            // Additional: Update the widget to reflect the stopped state
+            let currentTimeFormatted = currentTimeAsString()
+            print("Timer stopped, time zeroed: \(currentTimeFormatted)")
+            updateTimerData(timerValue: currentTimeFormatted, timerState: "stopped", timerMode: currentMode())
         }
-        
-        liveActivityTimer?.resume()
-    }
-    
-    private func stopLiveActivityTimer() {
-        liveActivityTimer?.cancel()
-        liveActivityTimer = nil
     }
     
     
@@ -200,7 +212,6 @@ class TimerViewModel: ObservableObject {
             print("Error playing alarm sound: \(error.localizedDescription)")
         }
     }
-    
     
 
     // MARK: - Audio Session Configuration for Background Playback
@@ -261,51 +272,89 @@ class TimerViewModel: ObservableObject {
         }
     }
     
+    private func startLiveActivityTimer() {
+        let queue = DispatchQueue(label: "com.supertime.liveactivity")
+        liveActivityTimer = DispatchSource.makeTimerSource(queue: queue)
+        liveActivityTimer?.schedule(deadline: .now(), repeating: 1.0)  // Update every second
+        
+        liveActivityTimer?.setEventHandler { [weak self] in
+            guard let self = self else { return }
+            
+            let secondsElapsed = self.currentTime / 1000  // Convert to seconds
+            if secondsElapsed != self.lastSecondUpdated {
+                self.lastSecondUpdated = secondsElapsed
+                DispatchQueue.main.async {
+                    self.updateLiveActivity()  // Only update Live Activity every second
+                }
+            }
+        }
+        
+        liveActivityTimer?.resume()
+    }
+    
+    private func stopLiveActivityTimer() {
+        if let timer = liveActivityTimer {
+            timer.cancel()
+            liveActivityTimer = nil
+            print("Live activity timer stopped.")
+        } else {
+            print("No live activity timer to stop.")
+        }
+    }
+
     func updateLiveActivity() {
         guard let currentActivity = currentActivity else { return }
 
-        if isCountingDown {
-            // Countdown: Update endDate
-            let remainingSeconds = currentTime / 1000
-            let endDate = Date().addingTimeInterval(TimeInterval(remainingSeconds))
+        let currentTimestamp = Date().timeIntervalSince1970  // Get current time in seconds
 
-            let updatedState = SuperTimeAttributes.ContentState(
-                startDate: Date(),  // Placeholder, not used in countdown mode
-                endDate: endDate,
-                isRunning: isRunning
-            )
+        // Determine if one second has passed since last update
+        if currentTimestamp - lastUpdateTimestamp >= 1 {
+            lastUpdateTimestamp = currentTimestamp  // Update the last update timestamp
+            
+            if isCountingDown {
+                // Countdown mode updates
+                let remainingSeconds = currentTime / 1000
+                let endDate = Date().addingTimeInterval(TimeInterval(remainingSeconds))
 
-            let updatedContent = ActivityContent(state: updatedState, staleDate: nil)
+                let updatedState = SuperTimeAttributes.ContentState(
+                    startDate: Date(), endDate: endDate, isRunning: isRunning
+                )
 
-            print("Updating countdown live activity. Time left (s): \(remainingSeconds)")
+                let updatedContent = ActivityContent(state: updatedState, staleDate: nil)
 
-            Task {
-                await currentActivity.update(updatedContent)
-            }
-        } else {
-            // Stopwatch: Update startDate
-            let elapsedSeconds = currentTime / 1000
-            let startDate = Date().addingTimeInterval(TimeInterval(-elapsedSeconds))
+                print("Updating countdown live activity. Time left (s): \(remainingSeconds)")
 
-            let updatedState = SuperTimeAttributes.ContentState(
-                startDate: startDate,
-                endDate: Date(),  // Placeholder, not used in stopwatch mode
-                isRunning: isRunning
-            )
+                Task {
+                    await currentActivity.update(updatedContent)
+                }
 
-            let updatedContent = ActivityContent(state: updatedState, staleDate: nil)
+            } else {
+                // Stopwatch mode updates
+                let elapsedSeconds = currentTime / 1000
+                let startDate = Date().addingTimeInterval(TimeInterval(-elapsedSeconds))
 
-            print("Updating stopwatch live activity. Elapsed time (s): \(elapsedSeconds)")
+                let updatedState = SuperTimeAttributes.ContentState(
+                    startDate: startDate, endDate: Date(), isRunning: isRunning
+                )
 
-            Task {
-                await currentActivity.update(updatedContent)
+                let updatedContent = ActivityContent(state: updatedState, staleDate: nil)
+
+                print("Updating stopwatch live activity. Elapsed time (s): \(elapsedSeconds)")
+
+                Task {
+                    await currentActivity.update(updatedContent)
+                }
             }
         }
     }
     
-    func endLiveActivity() {
-        guard let currentActivity = currentActivity else { return }
 
+    func endLiveActivity() {
+        guard let currentActivity = currentActivity else {
+            print("No live activity to end.")
+            return
+        }
+        
         Task {
             let finalState = SuperTimeAttributes.ContentState(
                 startDate: Date(),  // Placeholder, as it's the end state
@@ -317,7 +366,14 @@ class TimerViewModel: ObservableObject {
 
             await currentActivity.end(finalContent, dismissalPolicy: .immediate)
             self.currentActivity = nil  // Clear the reference to the ended activity
-            print("Live activity ended.")
+            print("Live activity ended successfully.")
+            
+            // Update widget with STOPPED
+            let currentTimeFormatted = currentTimeAsString()
+            print("Live activity ended, current time: \(currentTimeFormatted)")
+            updateTimerData(timerValue: currentTimeFormatted, timerState: "paused", timerMode: currentMode())
+            print("Widget updated: endLiveActivity()")
+            
         }
     }
     
@@ -376,6 +432,32 @@ class TimerViewModel: ObservableObject {
             generator.notificationOccurred(.error)
         }
     }
+    
+    
+    // MARK: - Widget
+    func updateTimerData(timerValue: String, timerState: String, timerMode: String) {
+        let sharedDefaults = UserDefaults(suiteName: "group.supertime")
+        sharedDefaults?.set(timerValue, forKey: "timerValue")
+        sharedDefaults?.set(timerState, forKey: "timerState")
+        sharedDefaults?.set(timerMode, forKey: "timerMode")
+//        sharedDefaults?.synchronize()  // This forces UserDefaults to save the data immediately
+        WidgetCenter.shared.reloadAllTimelines()  // Ensure the widget is updated immediately after changes
+        print("Widget Updated")
+    }
+    
+    func currentTimeAsString() -> String {
+        // Assuming `currentTime` is the variable that holds the timer's current time in milliseconds
+        let seconds = currentTime / 1000
+        let minutes = seconds / 60
+        let hours = minutes / 60
+
+        let formattedTime = String(format: "%02d:%02d:%02d", hours, minutes % 60, seconds % 60)
+        return formattedTime
+    }
+    
+    func currentMode() -> String {
+        return isCountingDown ? "timer" : "stopwatch"
+    }
 }
 
 enum HapticAction {
@@ -384,24 +466,4 @@ enum HapticAction {
     case change
     case ending
     case mistake
-}
-
-extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape( RoundedCorner(radius: radius, corners: corners) )
-    }
-}
-struct RoundedCorner: Shape {
-    let radius: CGFloat
-    let corners: UIRectCorner
-
-    init(radius: CGFloat = .infinity, corners: UIRectCorner = .allCorners) {
-        self.radius = radius
-        self.corners = corners
-    }
-
-    func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        return Path(path.cgPath)
-    }
 }

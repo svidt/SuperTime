@@ -1,7 +1,6 @@
 {
   "images" : [
     {
-      "filename" : "ST_.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -13,7 +12,6 @@
           "value" : "dark"
         }
       ],
-      "filename" : "ST Dark.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		203E08F22CA6D7DA00578EEF /* ActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203E08F12CA6D7DA00578EEF /* ActivityKit.framework */; };
 		203E08F32CA6DD9400578EEF /* ActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203E08F12CA6D7DA00578EEF /* ActivityKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		20511E242CB7DD270071E9E9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2059BF6C2CA0656A003C5C4D /* WidgetKit.framework */; };
+		20511E252CB7DD270071E9E9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2059BF6E2CA0656A003C5C4D /* SwiftUI.framework */; };
+		20511E302CB7DD290071E9E9 /* SuperTimeWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 20511E232CB7DD270071E9E9 /* SuperTimeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		209B8C572C98D8C9007FCE8F /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209B8C562C98D8C9007FCE8F /* ControlView.swift */; };
 		209B8C5E2C9C211B007FCE8F /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209B8C5D2C9C211B007FCE8F /* WelcomeScreen.swift */; };
 		209B8C602C9C7303007FCE8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 209B8C5F2C9C7303007FCE8F /* LaunchScreen.storyboard */; };
@@ -25,6 +28,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		20511E2E2CB7DD290071E9E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20C000D52C9707950058B07D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 20511E222CB7DD270071E9E9;
+			remoteInfo = SuperTimeWidgetExtension;
+		};
 		20B5DC592CA336D80049C768 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 20C000D52C9707950058B07D /* Project object */;
@@ -42,6 +52,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				20B5DC5B2CA336D80049C768 /* SuperTimeExtension.appex in Embed Foundation Extensions */,
+				20511E302CB7DD290071E9E9 /* SuperTimeWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,6 +61,8 @@
 
 /* Begin PBXFileReference section */
 		203E08F12CA6D7DA00578EEF /* ActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActivityKit.framework; path = System/Library/Frameworks/ActivityKit.framework; sourceTree = SDKROOT; };
+		20511E232CB7DD270071E9E9 /* SuperTimeWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SuperTimeWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		20511E452CB7F6500071E9E9 /* SuperTimeWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperTimeWidgetExtension.entitlements; sourceTree = "<group>"; };
 		2059BF6C2CA0656A003C5C4D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		2059BF6E2CA0656A003C5C4D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		209B8C562C98D8C9007FCE8F /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
@@ -69,6 +82,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		20511E342CB7DD290071E9E9 /* Exceptions for "SuperTimeWidget" folder in "SuperTimeWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 20511E222CB7DD270071E9E9 /* SuperTimeWidgetExtension */;
+		};
+		20511E442CB7E8E90071E9E9 /* Exceptions for "Assets" folder in "SuperTimeWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Font/Stormfaze.otf,
+			);
+			target = 20511E222CB7DD270071E9E9 /* SuperTimeWidgetExtension */;
+		};
 		20B5DC5F2CA336D80049C768 /* Exceptions for "SuperTime" folder in "SuperTimeExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -102,6 +129,14 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		20511E262CB7DD270071E9E9 /* SuperTimeWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				20511E342CB7DD290071E9E9 /* Exceptions for "SuperTimeWidget" folder in "SuperTimeWidgetExtension" target */,
+			);
+			path = SuperTimeWidget;
+			sourceTree = "<group>";
+		};
 		20B5DC512CA336D70049C768 /* SuperTime */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -116,6 +151,7 @@
 			exceptions = (
 				20F5E4902C9CAE5D0079ADB6 /* Exceptions for "Assets" folder in "SuperTime" target */,
 				20B5DC662CA3398E0049C768 /* Exceptions for "Assets" folder in "SuperTimeExtension" target */,
+				20511E442CB7E8E90071E9E9 /* Exceptions for "Assets" folder in "SuperTimeWidgetExtension" target */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -123,6 +159,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		20511E202CB7DD270071E9E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20511E252CB7DD270071E9E9 /* SwiftUI.framework in Frameworks */,
+				20511E242CB7DD270071E9E9 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		20B5DC4B2CA336D70049C768 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -157,9 +202,11 @@
 		20C000D42C9707950058B07D = {
 			isa = PBXGroup;
 			children = (
+				20511E452CB7F6500071E9E9 /* SuperTimeWidgetExtension.entitlements */,
 				20B5DC602CA3371D0049C768 /* SuperTimeExtension.entitlements */,
 				20C000DF2C9707950058B07D /* Timer */,
 				20B5DC512CA336D70049C768 /* SuperTime */,
+				20511E262CB7DD270071E9E9 /* SuperTimeWidget */,
 				2059BF6B2CA0656A003C5C4D /* Frameworks */,
 				20C000DE2C9707950058B07D /* Products */,
 			);
@@ -170,6 +217,7 @@
 			children = (
 				20C000DD2C9707950058B07D /* SuperTime.app */,
 				20B5DC4E2CA336D70049C768 /* SuperTimeExtension.appex */,
+				20511E232CB7DD270071E9E9 /* SuperTimeWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -204,6 +252,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		20511E222CB7DD270071E9E9 /* SuperTimeWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20511E332CB7DD290071E9E9 /* Build configuration list for PBXNativeTarget "SuperTimeWidgetExtension" */;
+			buildPhases = (
+				20511E1F2CB7DD270071E9E9 /* Sources */,
+				20511E202CB7DD270071E9E9 /* Frameworks */,
+				20511E212CB7DD270071E9E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				20511E262CB7DD270071E9E9 /* SuperTimeWidget */,
+			);
+			name = SuperTimeWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = SuperTimeWidgetExtension;
+			productReference = 20511E232CB7DD270071E9E9 /* SuperTimeWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		20B5DC4D2CA336D70049C768 /* SuperTimeExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 20B5DC5C2CA336D80049C768 /* Build configuration list for PBXNativeTarget "SuperTimeExtension" */;
@@ -239,6 +309,7 @@
 			);
 			dependencies = (
 				20B5DC5A2CA336D80049C768 /* PBXTargetDependency */,
+				20511E2F2CB7DD290071E9E9 /* PBXTargetDependency */,
 			);
 			name = SuperTime;
 			productName = Timer;
@@ -255,6 +326,9 @@
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					20511E222CB7DD270071E9E9 = {
+						CreatedOnToolsVersion = 16.0;
+					};
 					20B5DC4D2CA336D70049C768 = {
 						CreatedOnToolsVersion = 16.0;
 					};
@@ -280,11 +354,19 @@
 			targets = (
 				20C000DC2C9707950058B07D /* SuperTime */,
 				20B5DC4D2CA336D70049C768 /* SuperTimeExtension */,
+				20511E222CB7DD270071E9E9 /* SuperTimeWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		20511E212CB7DD270071E9E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		20B5DC4C2CA336D70049C768 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -305,6 +387,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		20511E1F2CB7DD270071E9E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		20B5DC4A2CA336D70049C768 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -329,6 +418,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		20511E2F2CB7DD290071E9E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 20511E222CB7DD270071E9E9 /* SuperTimeWidgetExtension */;
+			targetProxy = 20511E2E2CB7DD290071E9E9 /* PBXContainerItemProxy */;
+		};
 		20B5DC5A2CA336D80049C768 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 20B5DC4D2CA336D70049C768 /* SuperTimeExtension */;
@@ -337,6 +431,72 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		20511E312CB7DD290071E9E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = SuperTimeWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9Y4U7GC37R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SuperTimeWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SuperTimeWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.svidt.SuperTime.SuperTimeWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		20511E322CB7DD290071E9E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = SuperTimeWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9Y4U7GC37R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SuperTimeWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SuperTimeWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.svidt.SuperTime.SuperTimeWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		20B5DC5D2CA336D80049C768 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -621,6 +781,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		20511E332CB7DD290071E9E9 /* Build configuration list for PBXNativeTarget "SuperTimeWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20511E312CB7DD290071E9E9 /* Debug */,
+				20511E322CB7DD290071E9E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		20B5DC5C2CA336D80049C768 /* Build configuration list for PBXNativeTarget "SuperTimeExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

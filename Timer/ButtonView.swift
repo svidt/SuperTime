@@ -64,7 +64,7 @@ struct ButtonView: View {
                                 .padding()
                         }
                     }
-                    .font(.custom("Stormfaze", size: 45))
+                    .font(.custom("Stormfaze", size: 46))
                     .padding(.bottom)
                     
                     Spacer()
