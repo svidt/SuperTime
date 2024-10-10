@@ -9,20 +9,17 @@ import SwiftData
 import SwiftUI
 
 struct ContentView: View {
-//    @StateObject var viewModel = TimerViewModel()
     @ObservedObject var viewModel: TimerViewModel
-    
     @AppStorage("aboutToShowWelcomeScreen") var aboutToShowWelcomeScreen = true
-    
     @State var invertColor: Bool = false
-    
-    // A simple stopwatch app with a striking design
+
     var body: some View {
+        
         ZStack {
             Rectangle()
                 .fill(Color.black)
                 .ignoresSafeArea()
-
+            
             GeometryReader(content: { geometry in
                 if geometry.size.height > geometry.size.width {
                     
@@ -58,7 +55,6 @@ struct ContentView: View {
                             
                             ButtonView(viewModel: viewModel)
                                 .frame(width: geometry.size.width * (viewModel.isRunning || viewModel.isPaused ? 0.30 : 0.5), height: geometry.size.height * (viewModel.isRunning || viewModel.isPaused ? 1 : 0.6))
-
                         }
                     }
                 }

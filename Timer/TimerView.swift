@@ -33,11 +33,8 @@ struct TimerView: View {
                     .animation(.bouncy(duration: 0.3), value: viewModel.isCountingDown)
                     .clipShape(RoundedRectangle(cornerRadius: 25))
                 
-                
-                
                 VStack(alignment: .center, spacing: geometry.size.height * 0.05) {
-                    
-                    // Main seconds display (scaling based on available width)
+
                     HStack {
                         Text("\(formatTimeSeconds(viewModel.currentTime))")
                             .font(.custom("Stormfaze", size: geometry.size.width * 0.5))  // Set a consistent font size
@@ -62,11 +59,10 @@ struct TimerView: View {
                     .foregroundStyle(viewModel.isCountingDown ? .white : .black)
                     
                 }
-                
                 .minimumScaleFactor(0.3)
                 .lineLimit(1)
                 .monospacedDigit()
-                .padding(geometry.size.width * 0.05)  // Adaptive padding
+                .padding(geometry.size.width * 0.05)
                 .contentTransition(.numericText(countsDown: true))
                 .animation(.linear(duration: 0.3), value: viewModel.currentTime)
                 .foregroundStyle(viewModel.isCountingDown ? .black : .white)

@@ -60,21 +60,16 @@ struct ControlView: View {
                     .opacity(countdownInput <= 0 ? 0.5 : 1.0)
                     .disabled(countdownInput <= 0)
                     
-                    
                     Button(action: {
 
                         if viewModel.currentTime == 0 {
-//                            countdownInput += 60
                             let countdownSeconds = countdownInput
                             viewModel.toggleMode(isCountdown: true, countdownFrom: countdownSeconds * 1000)
                             
                         } else {
-//                            countdownInput = 0
                             viewModel.toggleMode(isCountdown: false, countdownFrom: countdownInput)
                             viewModel.resetTime()
                         }
-                        
-                        
                     }) {
                         Image(systemName: "arrow.up")
                             .rotationEffect(Angle(degrees: viewModel.isCountingDown ? 180.0 : 0))
@@ -82,7 +77,6 @@ struct ControlView: View {
                     }
                     .opacity(countdownInput <= 0 ? 0.5 : 1.0)
                     .disabled(countdownInput <= 0)
-                    
                     
                     // Add 1 minute
                     Button(action: {

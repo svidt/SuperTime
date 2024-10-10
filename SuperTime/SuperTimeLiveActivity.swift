@@ -61,9 +61,9 @@ struct SuperTimeLiveActivity: Widget {
             DynamicIsland {
                 // Expanded UI for dynamic island
                 DynamicIslandExpandedRegion(.leading) {
-                        Circle()
-                            .fill(context.state.endDate > .now ? Color.orange : Color.blue)
-                            .frame(height: 50)
+                    Circle()
+                        .fill(context.state.endDate > .now ? Color.orange : Color.blue)
+                        .frame(height: 50)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
                     VStack (alignment: .trailing){
@@ -86,7 +86,7 @@ struct SuperTimeLiveActivity: Widget {
                     .contentTransition(.numericText())
                     .padding(.horizontal)
                     .frame(height: 50)
-
+                    
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     // Buttom
