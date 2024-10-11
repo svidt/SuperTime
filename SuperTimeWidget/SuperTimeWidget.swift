@@ -16,8 +16,8 @@ struct SuperTimeWidget: Widget {
             SuperTimeWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("SuperTime Widget")
-        .description("Displays the current timer or stopwatch.")
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .description("Displays the current state of the timer or stopwatch.")
+        .supportedFamilies([.systemSmall, .systemMedium]) //  .systemLarge for an even bigger widget
     }
 }
 
@@ -33,7 +33,15 @@ struct SuperTimeWidgetEntryView: View {
                 
                 HStack {
                     // Display the current state of the timer
-                    Text(entry.timerState == "stopped" ? "Start" : entry.timerState)
+                    if entry.timerState == "paused" {
+                        Text("Paused")
+                    } else if entry.timerState == "running" {
+                        Text("Running")
+                    } else {
+                        Text("Start")
+                    }
+                    
+//                    Text(entry.timerState == "stopped" ? "Start" : entry.timerState)
 //                    Text(entry.timerValue) // Cannot update quick enough
 //                    Text("Mode: \(entry.timerMode)")
                 }

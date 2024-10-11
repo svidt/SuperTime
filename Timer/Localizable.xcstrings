@@ -1,0 +1,153 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "–" : {
+      "shouldTranslate" : false
+    },
+    "%@" : {
+      "shouldTranslate" : false
+    },
+    "%@ m" : {
+      "shouldTranslate" : false
+    },
+    "%@ ms" : {
+      "shouldTranslate" : false
+    },
+    "+" : {
+      "shouldTranslate" : false
+    },
+    "Continue" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortsæt"
+          }
+        }
+      }
+    },
+    "Displays the current state of the timer or stopwatch." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viser den nuværende status på ur og stopur."
+          }
+        }
+      }
+    },
+    "Ended" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slut"
+          }
+        }
+      }
+    },
+    "Hold to reset" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hold for reset"
+          }
+        }
+      }
+    },
+    "Just one thing ☝️" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Én ting mere ☝️"
+          }
+        }
+      }
+    },
+    "Paused" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortsæt"
+          }
+        }
+      }
+    },
+    "Press and hold" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryk og hold"
+          }
+        }
+      }
+    },
+    "Press and hold the button to reset the timer.\nAccept notifications if needed." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hold knappen nede for at nulstille. Accepter notifikationer om du vil. "
+          }
+        }
+      }
+    },
+    "Reset" : {
+      "shouldTranslate" : false
+    },
+    "Resume" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortsæt"
+          }
+        }
+      }
+    },
+    "Running" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uret kører"
+          }
+        }
+      }
+    },
+    "Start" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start"
+          }
+        }
+      }
+    },
+    "Stop" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop"
+          }
+        }
+      }
+    },
+    "SuperTime" : {
+      "shouldTranslate" : false
+    },
+    "SuperTime Widget" : {
+      "shouldTranslate" : false
+    },
+    "Timer" : {
+      "shouldTranslate" : false
+    }
+  },
+  "version" : "1.0"
+}

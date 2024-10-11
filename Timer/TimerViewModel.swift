@@ -71,7 +71,7 @@ class TimerViewModel: ObservableObject {
             
             provideHapticFeedback(for: .startStop)
             UIApplication.shared.isIdleTimerDisabled = true // Prevent screen from locking
-            print("~Screen Always ON~")
+            print("Screen: ON")
             
             startLiveActivityTimer()  // Start the live activity timer
             
@@ -116,7 +116,6 @@ class TimerViewModel: ObservableObject {
             let currentTimeFormatted = currentTimeAsString()
             print("Current time after stop: \(currentTimeFormatted)")
             updateTimerData(timerValue: currentTimeFormatted, timerState: "paused", timerMode: currentMode())
-            print("Widget should be - PAUSED - ")
         } else {
             print("stopTimer() called, but timer was not running.")
         }
@@ -136,7 +135,7 @@ class TimerViewModel: ObservableObject {
         provideHapticFeedback(for: .reset)
         
         UIApplication.shared.isIdleTimerDisabled = false  // Allow screen to lock again
-        print("~Screen Always OFF~")
+        print("Screen: OFF")
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         
         endLiveActivity()
@@ -155,7 +154,7 @@ class TimerViewModel: ObservableObject {
             updateCountdownTimer(elapsed: elapsed)
         } else {
             currentTime = Int(elapsed)  // Count up in stopwatch mode
-            print("Stopwatch running: current time \(currentTimeAsString())")
+//            print("Stopwatch running: current time \(currentTimeAsString())")
         }
         
         // Ensure that we do not keep running if timer is stopped
@@ -169,7 +168,7 @@ class TimerViewModel: ObservableObject {
         let remainingTime = countdownTime - Int(elapsed)
         if remainingTime > 0 {
             currentTime = remainingTime
-            print("Countdown running: remaining time \(currentTimeAsString())")
+//            print("Countdown running: remaining time \(currentTimeAsString())")
         } else {
             currentTime = 0  // Ensure we explicitly set currentTime to 0
             print("Countdown reached zero. Stopping timer.")
@@ -179,7 +178,7 @@ class TimerViewModel: ObservableObject {
             stopLiveActivityTimer()  // Stop live activity timer
             
             UIApplication.shared.isIdleTimerDisabled = false
-            print("~Screen Always OFF~")
+            print("Screen: OFF")
             playAlarm()
             print("Countdown reached zero, triggering alarm.")
         
@@ -366,13 +365,11 @@ class TimerViewModel: ObservableObject {
 
             await currentActivity.end(finalContent, dismissalPolicy: .immediate)
             self.currentActivity = nil  // Clear the reference to the ended activity
-            print("Live activity ended successfully.")
             
-            // Update widget with STOPPED
+            // Update widget with PAUSED
             let currentTimeFormatted = currentTimeAsString()
             print("Live activity ended, current time: \(currentTimeFormatted)")
             updateTimerData(timerValue: currentTimeFormatted, timerState: "paused", timerMode: currentMode())
-            print("Widget updated: endLiveActivity()")
             
         }
     }
@@ -442,7 +439,7 @@ class TimerViewModel: ObservableObject {
         sharedDefaults?.set(timerMode, forKey: "timerMode")
 //        sharedDefaults?.synchronize()  // This forces UserDefaults to save the data immediately
         WidgetCenter.shared.reloadAllTimelines()  // Ensure the widget is updated immediately after changes
-        print("Widget Updated")
+        print("Widget Updated: \(timerState)")
     }
     
     func currentTimeAsString() -> String {

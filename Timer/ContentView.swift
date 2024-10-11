@@ -52,6 +52,7 @@ struct ContentView: View {
                                 .frame(height: geometry.size.height * (viewModel.isRunning || viewModel.isPaused ? 0.0 : 0.2))
                                 .scaleEffect(viewModel.isRunning || viewModel.isPaused ? 0.0 : 1)
                                 .opacity(viewModel.isRunning || viewModel.isPaused ? 0.0 : 1)
+                                .padding(.horizontal)
                             
                             ButtonView(viewModel: viewModel)
                                 .frame(width: geometry.size.width * (viewModel.isRunning || viewModel.isPaused ? 0.30 : 0.5), height: geometry.size.height * (viewModel.isRunning || viewModel.isPaused ? 1 : 0.6))

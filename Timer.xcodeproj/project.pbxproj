@@ -12,6 +12,9 @@
 		20511E242CB7DD270071E9E9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2059BF6C2CA0656A003C5C4D /* WidgetKit.framework */; };
 		20511E252CB7DD270071E9E9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2059BF6E2CA0656A003C5C4D /* SwiftUI.framework */; };
 		20511E302CB7DD290071E9E9 /* SuperTimeWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 20511E232CB7DD270071E9E9 /* SuperTimeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		20511E472CB863100071E9E9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 20511E462CB863100071E9E9 /* Localizable.xcstrings */; };
+		20511E4B2CB976770071E9E9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 20511E462CB863100071E9E9 /* Localizable.xcstrings */; };
+		20511E4C2CB976770071E9E9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 20511E462CB863100071E9E9 /* Localizable.xcstrings */; };
 		209B8C572C98D8C9007FCE8F /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209B8C562C98D8C9007FCE8F /* ControlView.swift */; };
 		209B8C5E2C9C211B007FCE8F /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209B8C5D2C9C211B007FCE8F /* WelcomeScreen.swift */; };
 		209B8C602C9C7303007FCE8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 209B8C5F2C9C7303007FCE8F /* LaunchScreen.storyboard */; };
@@ -63,6 +66,7 @@
 		203E08F12CA6D7DA00578EEF /* ActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActivityKit.framework; path = System/Library/Frameworks/ActivityKit.framework; sourceTree = SDKROOT; };
 		20511E232CB7DD270071E9E9 /* SuperTimeWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SuperTimeWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		20511E452CB7F6500071E9E9 /* SuperTimeWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperTimeWidgetExtension.entitlements; sourceTree = "<group>"; };
+		20511E462CB863100071E9E9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2059BF6C2CA0656A003C5C4D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		2059BF6E2CA0656A003C5C4D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		209B8C562C98D8C9007FCE8F /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
@@ -96,20 +100,26 @@
 			);
 			target = 20511E222CB7DD270071E9E9 /* SuperTimeWidgetExtension */;
 		};
+		20511E502CB97C550071E9E9 /* Exceptions for "SuperTime" folder in "SuperTime" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SuperTimeAttributes.swift,
+			);
+			target = 20C000DC2C9707950058B07D /* SuperTime */;
+		};
+		20511E522CB97C850071E9E9 /* Exceptions for "SuperTimeWidget" folder in "SuperTime" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TimelineProvider.swift,
+			);
+			target = 20C000DC2C9707950058B07D /* SuperTime */;
+		};
 		20B5DC5F2CA336D80049C768 /* Exceptions for "SuperTime" folder in "SuperTimeExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
 			target = 20B5DC4D2CA336D70049C768 /* SuperTimeExtension */;
-		};
-		20B5DC612CA3374E0049C768 /* Exceptions for "SuperTime" folder in "SuperTime" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				SuperTimeAttributes.swift,
-				SuperTimeLiveActivity.swift,
-			);
-			target = 20C000DC2C9707950058B07D /* SuperTime */;
 		};
 		20B5DC662CA3398E0049C768 /* Exceptions for "Assets" folder in "SuperTimeExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -132,6 +142,7 @@
 		20511E262CB7DD270071E9E9 /* SuperTimeWidget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				20511E522CB97C850071E9E9 /* Exceptions for "SuperTimeWidget" folder in "SuperTime" target */,
 				20511E342CB7DD290071E9E9 /* Exceptions for "SuperTimeWidget" folder in "SuperTimeWidgetExtension" target */,
 			);
 			path = SuperTimeWidget;
@@ -140,7 +151,7 @@
 		20B5DC512CA336D70049C768 /* SuperTime */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				20B5DC612CA3374E0049C768 /* Exceptions for "SuperTime" folder in "SuperTime" target */,
+				20511E502CB97C550071E9E9 /* Exceptions for "SuperTime" folder in "SuperTime" target */,
 				20B5DC5F2CA336D80049C768 /* Exceptions for "SuperTime" folder in "SuperTimeExtension" target */,
 			);
 			path = SuperTime;
@@ -235,6 +246,7 @@
 				20C001042C971D070058B07D /* ButtonView.swift */,
 				20C001102C98600B0058B07D /* TimerViewModel.swift */,
 				209B8C5D2C9C211B007FCE8F /* WelcomeScreen.swift */,
+				20511E462CB863100071E9E9 /* Localizable.xcstrings */,
 				20C000E42C9707960058B07D /* Assets.xcassets */,
 				20C000E62C9707960058B07D /* Preview Content */,
 			);
@@ -343,6 +355,7 @@
 			knownRegions = (
 				en,
 				Base,
+				da,
 			);
 			mainGroup = 20C000D42C9707950058B07D;
 			packageReferences = (
@@ -364,6 +377,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20511E4C2CB976770071E9E9 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +385,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20511E4B2CB976770071E9E9 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20C000E82C9707960058B07D /* Preview Assets.xcassets in Resources */,
+				20511E472CB863100071E9E9 /* Localizable.xcstrings in Resources */,
 				20C000E52C9707960058B07D /* Assets.xcassets in Resources */,
 				209B8C602C9C7303007FCE8F /* LaunchScreen.storyboard in Resources */,
 			);
@@ -460,7 +476,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -493,7 +509,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -529,7 +545,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -565,7 +581,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -631,6 +647,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -690,6 +707,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -723,7 +741,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.svidt.SuperTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -732,7 +750,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -765,7 +783,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.svidt.SuperTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -774,7 +792,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
